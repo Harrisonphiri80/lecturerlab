@@ -1,16 +1,45 @@
-# React + Vite
+# Lecturers Site (proj1)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Tutoring website: a list of lecturer cards; the button "Подробнее и тарифы" opens a modal with education, subjects and prices.
 
-Currently, two official plugins are available:
+## Stack
+- Node.js TODO (`node -v`)
+- Vite TODO, React TODO (see `package.json`)
+- Plain CSS, fonts: Fraunces and Inter
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Run
+```bash
+git clone TODO-REPOSITORY-URL
+cd proj1
+npm install
+npm run dev      # open http://localhost:5173
+```
 
-## React Compiler
+## Folder structure
+```
+src/
+├── assets/lecturers/      # lecturer photos (petrov.jpg, ...)
+├── components/
+│   ├── LecturerCard.jsx   # card in the list
+│   └── LecturerModal.jsx  # details + tariffs modal
+├── data/lecturers.js      # all data (array of objects)
+├── App.jsx
+└── main.jsx
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Data
+All content is in `src/data/lecturers.js` (no backend). One lecturer:
+`id`, `gender`, `name`, `photo` (imported image), `education`, `experience`, `degree`, `subjects[]` (`title`, `desc`, `topics[]`), `tariffs[]` (`name`, `price`).
+If `photo` is missing, a DiceBear avatar based on `id` is used.
 
-## Expanding the ESLint configuration
+## Routing
+TODO: "No router, single page; the modal opens via React state" **or** list the routes.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Task for the developer (Variant 5)
+Lazy-load lecturer photos on the cards with `IntersectionObserver` + `useRef`:
+- the photo loads only when the card enters the viewport;
+- a placeholder is shown before that;
+- the observer is disconnected on unmount.
+
+Where: `src/components/LecturerCard.jsx`.
+Tip: test in DevTools → Network (filter "Img", throttle to "Slow 4G") and scroll.

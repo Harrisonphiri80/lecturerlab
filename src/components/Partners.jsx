@@ -1,26 +1,47 @@
 import React from 'react';
 import partners from '../data/partners.js';
 
-/**
- * PartnerCard — карточка одного партнёра.
- * Свойства (props):
- *  - partner: { id, name, logoText, description }
- */
 function PartnerCard({ partner }) {
   return (
     <article className="partner-card">
-      <div className="partner-card__logo">{partner.logoText}</div>
+      <div className="partner-card__top">
+        <div className="partner-card__logo">
+          {partner.logo ? (
+            <img src={partner.logo} alt={partner.name} />
+          ) : (
+            partner.logoText
+          )}
+        </div>
+        {partner.url && (
+          <a
+            className="partner-card__arrow"
+            href={partner.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Перейти на сайт ${partner.name}`}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="28"
+              height="28"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M7 17L17 7M8 7h9v9" />
+            </svg>
+          </a>
+        )}
+      </div>
       <div className="partner-card__body">
-        <h3>{partner.name}</h3>
         <p>{partner.description}</p>
       </div>
     </article>
   );
 }
 
-/**
- * Partners — блок "Партнёры" из макета.
- */
 export default function Partners() {
   return (
     <section className="page-section partners">
